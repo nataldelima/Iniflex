@@ -56,5 +56,14 @@ public class App {
             lista.forEach(funcionario -> System.out.println("  " + funcionario.getNome()));
         });
 
+        // 3.8 – Imprimir funcionários que fazem aniversário no mês 10 e 12
+        System.out.println("Aniversariantes dos meses 10 e 12:");
+        funcionarios.stream()
+                .filter(funcionario -> {
+                    int mes = funcionario.getDataNascimento().getMonthValue();
+                    return mes == 10 || mes == 12;
+                })
+                .forEach(funcionario -> System.out.println(funcionario.getNome()));
+
     }
 }
