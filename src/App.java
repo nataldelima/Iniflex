@@ -24,8 +24,10 @@ public class App {
                 .add(new Funcionario("Heloísa", LocalDate.of(2003, 5, 24), new BigDecimal("1606.85"), "Eletricista"));
         funcionarios.add(new Funcionario("Helena", LocalDate.of(1996, 9, 2), new BigDecimal("2799.93"), "Gerente"));
 
-        // Imprimir todos os funcionários
+        // Remover o funcionário “João” da lista.
+        funcionarios.removeIf(funcionario -> funcionario.getNome().equals("João"));
 
+        // Imprimir todos os funcionários
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
 
@@ -35,9 +37,6 @@ public class App {
                     ", Salário: " + decimalFormat.format(funcionario.getSalario()) +
                     ", Função: " + funcionario.getFuncao());
         }
-
-        // Remover o funcionário “João” da lista.
-        funcionarios.removeIf(funcionario -> funcionario.getNome().equals("João"));
 
     }
 }
