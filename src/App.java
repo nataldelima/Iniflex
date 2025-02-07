@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -38,10 +40,20 @@ public class App {
                     ", Função: " + funcionario.getFuncao());
         }
 
-        // 3.4 – Aumento de 10% no salário
+        // Aumento de 10% no salário
         funcionarios.forEach(funcionario -> {
             BigDecimal novoSalario = funcionario.getSalario().multiply(new BigDecimal("1.10"));
             funcionario.setSalario(novoSalario);
+        });
+
+        // Agrupar funcionários por função
+        Map<String, List<Funcionario>> funcionariosPorFuncao = funcionarios.stream()
+                .collect(Collectors.groupingBy(Funcionario::getFuncao));
+
+        // Imprimir funcionários agrupados por função
+        funcionariosPorFuncao.forEach((funcao, lista) -> {
+            System.out.println("Função: " + funcao);
+            lista.forEach(funcionario -> System.out.println("  " + funcionario.getNome()));
         });
 
     }
