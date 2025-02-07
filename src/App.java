@@ -38,5 +38,11 @@ public class App {
                     ", Função: " + funcionario.getFuncao());
         }
 
+        // 3.4 – Aumento de 10% no salário
+        funcionarios.forEach(funcionario -> {
+            BigDecimal novoSalario = funcionario.getSalario().multiply(new BigDecimal("1.10"));
+            funcionario.setSalario(novoSalario);
+        });
+
     }
 }
